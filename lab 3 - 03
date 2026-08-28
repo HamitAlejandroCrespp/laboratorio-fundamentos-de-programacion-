@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string nom = "Alejandro";
+    int edad = 18;
+    string car = "Ingenieria Sostenible y Medio Ambiente";
+    int sem = 1;
+    int prom; 51
+    
+    cout<<"Ingresa el promedio final: ";
+    cin>>prom;
+    
+    cout<<"Nombre: "<<nom<<"\n";
+    cout<<"Edad: "<<edad<<"\n";
+    cout<<"Carrera: "<<car<<"\n";
+    cout<<"Semestre: "<<sem<<"\n";
+    cout<<"Promedio: "<<prom<<"\n";
+    
+    if(prom>=51){
+        cout<<"El estudiante APROBO\n";
+    }else{
+        cout<<"El estudiante REPROBO\n";
+    }
+    
+    return 0;
+}
