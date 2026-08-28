@@ -5,7 +5,7 @@ int main() {
     string nom = "Alejandro";
     int edad = 18;
     string car = "Ingenieria Sostenible y Medio Ambiente";
-    int sem = 1;
+    int sem = 2;
     
     cout<<"Nombre: "<<nom<<"\n";
     cout<<"Edad: "<<edad<<"\n";
