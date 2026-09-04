@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string nombre;
+    float m3;
+    float pago;
+    string categoria;
+
+    cout << "Nombre del cliente: ";
+    cin >> nombre;
+    cout << "Consumo en m3: ";
+    cin >> m3;
+   count << "nombre de la empresa:";
+ cin >> nombre emresa; 
+    // Con el else if no hace falta poner dos condiciones, se evalúa en orden
+    if (m3 <= 15) {
+        pago = (m3 * 1.20) + 10; // Se cobra 1.20 y se suma el monto fijo de 10bs
+        categoria = "Consumo Minimo"; // Asignamos la primera categoría
+    } else if (m3 <= 35) {
+        pago = (m3 * 2.50) + 10; // Tarifa para consumo doméstico[cite: 1]
+        categoria = "Consumo Domestico";
+    } else if (m3 <= 70) {
+        pago = (m3 * 4.00) + 10; // Tarifa para consumo comercial[cite: 1]
+        categoria = "Consumo Comercial";
+    } else {
+        pago = (m3 * 6.50) + 10; // Tarifa para consumo alto o industrial[cite: 1]
+        categoria = "Consumo Alto / Industrial";
+    }
+
+    cout << endl;
+    cout << "Cliente: " << nombre << endl; // Mostramos nombre del cliente[cite: 1]
+    cout << "Monto fijo a pagar: 10 Bs" << endl; // Mostramos el monto fijo[cite: 1]
+    cout << "Categoria asignada: " << categoria << endl; // Mostramos categoría[cite: 1]
+    cout << "Pago total: " << pago << " Bs" << endl; // Mostramos total[cite: 1]
+
+    return 0;
+}
