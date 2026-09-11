@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    char opcion;
+    float peso, tarifaBase, precioKgExtra, kgExtra, total;
+
+    do {
+        //  ----- Menu -----
+        cout << "\n===== SISTEMA DE ENVIOS Y ENCOMIENDAS =====\n";
+        cout << "L - La Paz / El Alto  (Bs 7.00 base, Bs 3.00/Kg extra)\n";
+        cout << "C - Cochabamba        (Bs 5.00 base, Bs 2.00/Kg extra)\n";
+        cout << "S - Santa Cruz        (Bs 8.00 base, Bs 4.00/Kg extra)\n";
+        cout << "X - Salir del sistema\n";
+        cout << "============================================\n";
+        cout << "Ingrese el destino: ";
+        cin >> opcion;
+
+        // ----- Switch para procesar la opcion -----
+        switch (opcion) {
+            case 'L':
+            case 'l':
+                tarifaBase = 7.00;
+                precioKgExtra = 3.00;
+                break;
+            case 'C':
+            case 'c' :
+                tarifaBase = 5.00;
+                precioKgExtra = 2.00;
+                break;
+            case 'S':
+            case 's':
+                tarifaBase = 8.00;
+                precioKgExtra = 4.00;
+                break;
+            case 'X':
+            case 'x':
+                cout << "\nSaliendo del sistema... Gracias por usar el servicio.\n";
+                break;
+            default:
+                cout << "\n** Opcion no valida. Intente nuevamente. **\n";
+                break;
+        }
+
+         if (opcion == 'L' || opcion == 'C' || opcion == 'S') {
+            cout << "Ingrese el peso del paquete (Kg): ";
+            cin >> peso;
+
+            if (peso <= 2) {
+                total = tarifaBase;
+                kgExtra = 0;
+            } else {
+                kgExtra = peso - 2;
+                total = tarifaBase + (kgExtra * precioKgExtra);
+            }
+
+            cout << "\n----- RESULTADO -----\n";
+            cout << "Peso ingresado : " << peso << " Kg\n";
+            cout << "Tarifa base    : Bs " << tarifaBase << "\n";
+            if (kgExtra > 0) {
+                cout << "Kg extra       : " << kgExtra << " Kg\n";
+                cout << "Costo extra    : Bs " << (kgExtra * precioKgExtra) << "\n";
+            }
+            cout << "COSTO TOTAL    : Bs " << total << "\n";
+        }
+
+    } while (opcion != 'X'); 
+
+    return 0;
+}
