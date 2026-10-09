@@ -1,0 +1,54 @@
+#include <iostream>
+
+using namespace std;
+
+// Funcion para leer las ventas de los 5 dias
+void leerVentas(double ventas[]) {
+    for (int i = 0; i < 5; i++) {
+        cout << "Ingrese la venta del dia " << i + 1 << ": ";
+        cin >> ventas[i];
+    }
+}
+
+// Funcion para calcular total, promedio y dias superiores al promedio
+void procesarVentas(double ventas[], double &total, double &promedio, int &diasSuperiores) {
+    total = 0;
+    
+    // Sumar todas las ventas
+    for (int i = 0; i < 5; i++) {
+        total = total + ventas[i];
+    }
+    
+    // Calcular el promedio diario
+    promedio = total / 5;
+    
+    // Contar cuantos dias superan el promedio
+    diasSuperiores = 0;
+    for (int i = 0; i < 5; i++) {
+        if (ventas[i] > promedio) {
+            diasSuperiores++;
+        }
+    }
+}
+
+// Funcion para mostrar los resultados en pantalla
+void mostrarResultados(double total, double promedio, int diasSuperiores) {
+    cout << "\n--- RESULTADOS DEL ANALISIS ---" << endl;
+    cout << "Total vendido: " << total << endl;
+    cout << "Promedio diario: " << promedio << endl;
+    cout << "Dias con ventas superiores al promedio: " << diasSuperiores << endl;
+}
+
+int main() {
+    double ventas[5];
+    double total = 0;
+    double promedio = 0;
+    int diasSuperiores = 0;
+
+    // Llamadas a las funciones
+    leerVentas(ventas);
+    procesarVentas(ventas, total, promedio, diasSuperiores);
+    mostrarResultados(total, promedio, diasSuperiores);
+
+    return 0;
+}
