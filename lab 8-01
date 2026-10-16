@@ -1,60 +1,46 @@
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-// Función para solicitar las notas y calcular el promedio
-float calcularPromedio(int cantidadEvaluaciones) {
-    float suma = 0;
-    float nota;
-
-    for (int i = 1; i <= cantidadEvaluaciones; i++) {
-        do {
-            cout << "Ingrese la nota " << i << " (0 - 100): ";
-            cin >> nota;
-            if (nota < 0 || nota > 100) {
-                cout << "Error: La nota debe estar entre 0 y 100." << endl;
-            }
-        } while (nota < 0 || nota > 100);
-
-        suma = suma + nota;
-    }
-
-    return suma / cantidadEvaluaciones;
+#include #include using namespace std;
+int main(){
+float calcularPromedio(float suma, int cantidad) {
+return suma / cantidad;
 }
-
-// Función para determinar si el estudiante aprobó o reprobó
-string determinarEstado(float promedio) {
-    if (promedio >= 51.0) {
-        return "Aprobado";
-    } else {
-        return "Reprobado";
-    }
+bool aprobo(float promedio) {
+return promedio >= 51;
 }
-
-// Función para mostrar el resumen de notas
-void mostrarResultados(float promedio, string estado) {
-    cout << "\n--- RESULTADO FINAL ---" << endl;
-    cout << "Promedio obtenido: " << promedio << endl;
-    cout << "Estado del estudiante: " << estado << endl;
-}
-
 int main() {
-    int cantidad;
+int cantidad;
+float nota, suma = 0, promedio;
 
-    cout << "=== CONTROL DE NOTAS ===" << endl;
-    cout << "Ingrese la cantidad de evaluaciones: ";
-    cin >> cantidad;
+cout << "Ingrese la cantidad de evaluaciones: ";
+cin >> cantidad;
 
-    while (cantidad <= 0) {
-        cout << "La cantidad debe ser mayor a 0. Ingrese nuevamente: ";
-        cin >> cantidad;
-    }
+if (cantidad <= 0) {
+cout << "La cantidad debe ser mayor que cero." << endl;
+return 1;
+}
 
-    float promedio = calcularPromedio(cantidad);
-    string estado = determinarEstado(promedio);
+for (int i = 1; i <= cantidad; i++) {
+do {
+cout << "Ingrese la nota " << i << " (0-100): ";
+cin >> nota;
 
-    mostrarResultados(promedio, estado);
+if (nota < 0 || nota > 100) {
+cout << "Nota invalida. Intente nuevamente." << endl;
+}
+} while (nota < 0 || nota > 100);
 
-    return 0;
+suma += nota;
+}
+
+promedio = calcularPromedio(suma, cantidad);
+
+cout << fixed << setprecision(2);
+cout << "\nPromedio final: " << promedio << endl;
+
+if (aprobo(promedio)) {
+cout << "Estado: APROBADO" << endl;
+} else {
+cout << "Estado: REPROBADO" << endl;
+}
+
+return 0;
 }
