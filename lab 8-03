@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Funcion para pedir los dias[cite: 1]
+int leerDias() {
+    int d;
+    cout << "Ingrese la cantidad de dias: ";
+    cin >> d;
+    return d;
+}
+
+// Funcion para clasificar cada monto[cite: 1]
+string clasificarMonto(float monto) {
+    if (monto > 1000) {
+        if (monto > 2000) return "Excelente";
+        else return "Alta";
+    } else {
+        if (monto < 500) return "Baja";
+        else return "Regular";
+    }
+}
+
+// Funcion para registrar y procesar ventas[cite: 1]
+void procesarVentas(int dias, float &total, float &prom, int &altas) {
+    total = 0;
+    altas = 0;
+
+    for (int i = 1; i <= dias; i++) {
+        float monto;
+        cout << "Venta del dia " << i << ": ";
+        cin >> monto;
+
+        cout << "  Categoria: " << clasificarMonto(monto) << endl;
+
+        total += monto;
+        if (monto > 1000) {
+            altas++;
+        }
+    }
+    prom = total / dias;
+}
+
+// Funcion para mostrar informe[cite: 1]
+void mostrarResultados(float total, float prom, int altas) {
+    cout << "\nMonto total: Bs " << total << endl;
+    cout << "Promedio diario: Bs " << prom << endl;
+    cout << "Dias con ventas mayores a Bs 1000: " << altas << endl;
+}
+
+int main() {
+    int dias = leerDias();
+    float total, promedio;
+    int ventasAltas;
+
+    procesarVentas(dias, total, promedio, ventasAltas);
+    mostrarResultados(total, promedio, ventasAltas);
+
+    return 0;
+}
