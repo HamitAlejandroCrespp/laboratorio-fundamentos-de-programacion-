@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Función para solicitar las notas y calcular el promedio
+float calcularPromedio(int cantidadEvaluaciones) {
+    float suma = 0;
+    float nota;
+
+    for (int i = 1; i <= cantidadEvaluaciones; i++) {
+        do {
+            cout << "Ingrese la nota " << i << " (0 - 100): ";
+            cin >> nota;
+            if (nota < 0 || nota > 100) {
+                cout << "Error: La nota debe estar entre 0 y 100." << endl;
+            }
+        } while (nota < 0 || nota > 100);
+
+        suma = suma + nota;
+    }
+
+    return suma / cantidadEvaluaciones;
+}
+
+// Función para determinar si el estudiante aprobó o reprobó
+string determinarEstado(float promedio) {
+    if (promedio >= 51.0) {
+        return "Aprobado";
+    } else {
+        return "Reprobado";
+    }
+}
+
+// Función para mostrar el resumen de notas
+void mostrarResultados(float promedio, string estado) {
+    cout << "\n--- RESULTADO FINAL ---" << endl;
+    cout << "Promedio obtenido: " << promedio << endl;
+    cout << "Estado del estudiante: " << estado << endl;
+}
+
+int main() {
+    int cantidad;
+
+    cout << "=== CONTROL DE NOTAS ===" << endl;
+    cout << "Ingrese la cantidad de evaluaciones: ";
+    cin >> cantidad;
+
+    while (cantidad <= 0) {
+        cout << "La cantidad debe ser mayor a 0. Ingrese nuevamente: ";
+        cin >> cantidad;
+    }
+
+    float promedio = calcularPromedio(cantidad);
+    string estado = determinarEstado(promedio);
+
+    mostrarResultados(promedio, estado);
+
+    return 0;
+}
