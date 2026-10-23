@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+// 1. Prototipos de funciones
+void leerNumero(int &N);
+void descomponerNumero(int N, int &u, int &d, int &c, int &m);
+void mostrarDigitos(int u, int d, int c, int m);
+
+// 2. Funcion principal
+int main() {
+    int N;
+    int u = 0, d = 0, c = 0, m = 0;
+    
+    leerNumero(N);                           // Llama a la funcion leer
+    descomponerNumero(N, u, d, c, m);        // Llama a la funcion procesar
+    mostrarDigitos(u, d, c, m);              // Llama a la funcion mostrar
+    
+    return 0;
+}
+
+// 3. Detalles de las funciones
+void leerNumero(int &N) {
+    cout << "Ingrese numero (1 al 9999): ";
+    cin >> N;
+    while (N < 1 || N >= 10000) {
+        cout << "Error. Ingrese numero de nuevo: ";
+        cin >> N;
+    }
+}
+
+void descomponerNumero(int N, int &u, int &d, int &c, int &m) {
+    u = N % 10;
+    N = N / 10;
+    
+    d = N % 10;
+    N = N / 10;
+    
+    c = N % 10;
+    N = N / 10;
+    
+    m = N % 10;
+}
+
+void mostrarDigitos(int u, int d, int c, int m) {
+    cout << "m = " << m << endl;
+    cout << "c = " << c << endl;
+    cout << "d = " << d << endl;
+    cout << "u = " << u << endl;
+}
