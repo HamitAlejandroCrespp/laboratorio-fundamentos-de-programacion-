@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    // 1. Declarar variables
+    int n;
+    int notas[100]; // Capacidad máxima del vector: 100
+    int suma = 0;
+    int mayor;
+    int menor;
+    float promedio;
+
+    // 2. Pedir N y validar que esté entre 1 y 100
+    do {
+        cout << "Ingrese la cantidad de estudiantes: ";
+        cin >> n;
+        
+        if (n < 1 || n > 100) {
+            cout << "Error: La cantidad debe ser entre 1 y 100. Intente de nuevo." << endl;
+        }
+    } while (n < 1 || n > 100);
+
+    // 3. Pedir las notas y guardarlas en el vector
+    for (int i = 0; i < n; i++) {
+        // Validar cada nota entre 0 y 100
+        do {
+            cout << "Nota estudiante " << i + 1 << ": ";
+            cin >> notas[i];
+            
+            if (notas[i] < 0 || notas[i] > 100) {
+                cout << "Error: La nota debe estar entre 0 y 100. Intente de nuevo." << endl;
+            }
+        } while (notas[i] < 0 || notas[i] > 100);
+        
+        // Vamos sumando las notas de una vez para el promedio
+        suma = suma + notas[i];
+    }
+
+    // 4. Mostrar todas las notas registradas
+    cout << "\nNOTAS REGISTRADAS" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << notas[i] << "  ";
+    }
+    cout << endl;
+
+    // 5. Calcular la nota mayor y menor
+    // Asumimos al principio que el primero es el mayor y también el menor
+    mayor = notas[0];
+    menor = notas[0];
+
+    for (int i = 1; i < n; i++) {
+        if (notas[i] > mayor) {
+            mayor = notas[i];
+        }
+        if (notas[i] < menor) {
+            menor = notas[i];
+        }
+    }
+
+    // 6. Calcular el promedio
+    // Convertimos la suma a float para que el promedio tenga decimales si es necesario
+    promedio = (float)suma / n;
+
+    // 7. Mostrar resultados finales
+    cout << "Promedio general: " << promedio << endl;
+    cout << "Nota mayor: " << mayor << endl;
+    cout << "Nota menor: " << menor << endl;
+
+    return 0;
+}
