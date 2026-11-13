@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// 1. Función BuscarSubCadena
+int BuscarSubCadena(string a, string b) {
+    int pos = b.find(a);
+    
+    // Si lo encuentra, pos será diferente a string::npos (o mayor/igual a 0)
+    if (pos >= 0 && pos < b.length()) {
+        return pos;
+    }
+    return -1;
+}
+
+// 2. Función con paso por referencia (&) para limpiar espacios
+void limpiarEspacios(string &texto) {
+    // Quitar espacios al inicio usando at() y substr()
+    while (texto.length() > 0 && texto.at(0) == ' ') {
+        texto = texto.substr(1, texto.length() - 1);
+    }
+    
+    // Quitar espacios al final
+    while (texto.length() > 0 && texto.at(texto.length() - 1) == ' ') {
+        texto = texto.substr(0, texto.length() - 1);
+    }
+}
+
+int main() {
+    // ---- PRUEBA DE LA PRIMERA PARTE ----
+    // cout << "Prueba BuscarSubCadena: " << BuscarSubCadena("oool", "hooola") << endl;
+    
+    // ---- SEGUNDA PARTE: ENCUESTA ----
+    int cantidad;
+    cout << "Ingrese la cantidad de preguntas: ";
+    cin >> cantidad;
+    
+    // Limpiamos el buffer para que getline no se salte la primera pregunta
+    cin.ignore(); 
+    
+    vector<string> preguntas; // Vector para almacenar las encuestas
+    
+    for (int i = 0; i < cantidad; i++) {
+        string preg;
+        bool esValida = false;
+        
+        // Estructura repetitiva (while) para validar que no esté vacía
+        while (esValida == false) {
+            cout << "Pregunta " << (i + 1) << ": ";
+            getline(cin, preg);
+            
+            // Llamamos a la función por referencia para limpiar espacios iniciales y finales
+            limpiarEspacios(preg);
+            
+            if (preg.length() == 0) {
+                cout << "Error: La pregunta no puede estar vacia. Intente de nuevo.\n";
+            } else {
+                esValida = true;
+                preguntas.push_back(preg); // Guardamos la pregunta válida
+            }
+        }
+    }
+    
+    // Mostrar todas las preguntas registradas de forma numerada
+    cout << "\n===== PREGUNTAS REGISTRADAS =====" << endl;
+    for (int i = 0; i < preguntas.size(); i++) {
+        cout << (i + 1) << ". " << preguntas.at(i) << endl;
+    }
+    
+    return 0;
+}
