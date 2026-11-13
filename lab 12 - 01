@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Función BuscarSubCadena
+int BuscarSubCadena(string a, string b) {
+    // Usamos el método find() sugerido
+    int pos = b.find(a);
+    
+    // Verificamos si lo encontró usando length()
+    if (pos >= 0 && pos < b.length()) {
+        // +1 para que la salida sea exactamente 2 como pide el ejemplo de la profe
+        return pos + 1; 
+    }
+    return -1; // Devuelve -1 si no está
+}
+
+int main() {
+    cout << "Entrada: BuscarSubCadena(\"oool\", \"hooola\")" << endl;
+    cout << "Salida esperada: " << BuscarSubCadena("oool", "hooola") << endl;
+    
+    return 0;
+}
