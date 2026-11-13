@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Función con paso por referencia (&) para limpiar espacios al inicio y final
+void limpiarEspacios(string &texto) {
+    // Validar y quitar espacios al inicio usando at() y substr()
+    while (texto.length() > 0 && texto.at(0) == ' ') {
+        texto = texto.substr(1, texto.length() - 1);
+    }
+    
+    // Validar y quitar espacios al final
+    while (texto.length() > 0 && texto.at(texto.length() - 1) == ' ') {
+        texto = texto.substr(0, texto.length() - 1);
+    }
+}
+
+int main() {
+    int cantidad;
+    
+    // Solicitar la cantidad de preguntas que tendrá la encuesta
+    cout << "Ingrese la cantidad de preguntas: ";
+    cin >> cantidad;
+    
+    // Limpiar el buffer de entrada para que el getline funcione bien
+    cin.ignore(); 
+    
+    // Vector de tipo string para almacenar las preguntas
+    vector<string> preguntas; 
+    
+    for (int i = 0; i < cantidad; i++) {
+        string preg;
+        bool esValida = false;
+        
+        // Validar que ninguna pregunta esté vacía
+        while (esValida == false) {
+            cout << "Pregunta " << (i + 1) << ":";
+            getline(cin, preg);
+            
+            // Usamos la función por referencia para limpiar espacios innecesarios
+            limpiarEspacios(preg);
+            
+            // Verificar si quedó vacía con length()
+            if (preg.length() == 0) {
+                cout << "Error: La pregunta no puede estar vacia. Intente de nuevo.\n";
+            } else {
+                esValida = true;
+                // Registrar cada pregunta en el vector respetando el orden
+                preguntas.push_back(preg); 
+            }
+        }
+    }
+    
+    // Mostrar todas las preguntas registradas de forma numerada
+    cout << "\n===== PREGUNTAS REGISTRADAS =====" << endl;
+    for (int i = 0; i < preguntas.size(); i++) {
+        cout << (i + 1) << ". " << preguntas.at(i) << endl;
+    }
+    
+    return 0;
+}
