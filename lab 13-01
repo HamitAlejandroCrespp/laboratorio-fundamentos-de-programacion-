@@ -4,21 +4,21 @@
 using namespace std;
 
 // Prototipos de funciones
-void registrar(string &nombre, string &apellido);
-string unirNombre(string nombre, string apellido);
-int contarCaracteres(string nombre, string apellido);
+void registrar(string &nombre, string &apellido, &carrera);
+string unirNombre(string nombre, string apellido, string carrera);
+int contarCaracteres(string nombre, string apellido, string carrera);
 void mostrar(string completo, int cantidad);
 
 int main() {
-    string nom, ape, nombreCompleto;
+    string nom, ape, carrera nombreCompleto;
     int cantidadLetras;
 
     // Llamadas a las funciones
-    registrar(nom, ape);
-    nombreCompleto = unirNombre(nom, ape);
-    cantidadLetras = contarCaracteres(nom, ape);
+    registrar(nom, ape, carrera);
+    nombreCompleto = unirNombre(nom, ape, carrera);
+    cantidadLetras = contarCaracteres(nom, ape, carrera);
     
-    mostrar(nombreCompleto, cantidadLetras);
+    mostrar(nombreCompleto, carrera, cantidadLetras);
 
     return 0;
 }
@@ -29,17 +29,18 @@ void registrar(string &nombre, string &apellido) {
     cin >> nombre;
     cout << "Ingrese el apellido: ";
     cin >> apellido;
+    cout << "Ingrese la carrera: ";
+    cin >> carrera;
 }
 
-string unirNombre(string nombre, string apellido) {
-    return nombre + " " + apellido;
+string unirNombre(string nombre, string apellido, string carrera) {
+    return nombre + " " + apellido  + " " + carrera;
 }
 
-int contarCaracteres(string nombre, string apellido) {
+int contarCaracteres(string nombre, string apellido, string carrera) {
     // Sumamos la longitud de ambas palabras (sin contar espacios)
-    return nombre.length() + apellido.length();
+    return nombre.length() + apellido.length + carrera.length();
 }
 
 void mostrar(string completo, int cantidad) {
     cout << "Nombre completo: " << completo << " | Letras: " << cantidad << endl;
-}
