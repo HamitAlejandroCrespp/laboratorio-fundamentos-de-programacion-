@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Prototipos
+void registrar(string &mensaje, string &palabra);
+void buscarPalabra(string mensaje, string palabra);
+
+int main() {
+    string msj, pal;
+    
+    registrar(msj, pal);
+    buscarPalabra(msj, pal);
+
+    return 0;
+}
+
+// Definiciones
+void registrar(string &mensaje, string &palabra) {
+    cout << "Ingrese el mensaje: ";
+    getline(cin, mensaje);
+    cout << "Ingrese la palabra a buscar: ";
+    cin >> palabra;
+}
+
+void buscarPalabra(string mensaje, string palabra) {
+    // size_t es un tipo de dato sin signo ideal para posiciones y tamaños
+    size_t posicion = mensaje.find(palabra);
+    
+    // Verificamos si la posición obtenida es menor que la longitud del texto
+    if (posicion < mensaje.length()) {
+        cout << "Posicion: " << posicion << endl;
+    } else {
+        cout << "Palabra no encontrada" << endl;
+    }
+}
